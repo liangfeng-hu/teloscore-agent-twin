@@ -8,6 +8,7 @@ from core.energy_vector import (
     default_energy,
     extract_event_metadata,
 )
+from core.llm_adapter import generate_with_llm
 from core.schemas import EnergyVector, MemoryHit, ProcessResult
 from memory.evermemos_client import EverMemOSClient
 
@@ -58,6 +59,8 @@ class TelosCore:
         self,
         user_input: str,
         extra_metadata: Dict[str, Any] | None = None,
+        use_llm: bool = False,
+        llm_backend: str | None = None,
     ) -> Dict[str, Any]:
         state_before = self.state.copy()
 
@@ -89,6 +92,13 @@ class TelosCore:
         )
         pattern_summary = self.memory.consolidate_patterns(user_id=self.user_id)
 
+        generated_output = generate_with_llm(
+            action=action_after,
+            user_input=user_input,
+            mode=self.mode,
+            backend=llm_backend if use_llm else None,
+        )
+
         if action_after in {"patch", "reflect"}:
             self.state.U_con *= 0.35
         if action_after in {"respond", "plan"}:
@@ -111,5 +121,10 @@ class TelosCore:
             stored_remote=stored_remote,
             state_before=state_before.to_dict(),
             state_after=state_after.to_dict(),
-        )
-        return result.to_dict()
+        ).to_dict()
+
+        result["generated_output"] = generated_output
+        result["llm_used"] = bool(use_llm)
+        result["llm_backend"] = llm_backend if use_llm else None
+
+        return result
