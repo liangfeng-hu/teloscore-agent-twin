@@ -1,0 +1,22 @@
+{
+  "cases": [
+    {
+      "name": "pricing_conflict_agent_case",
+      "mode": "agent_os",
+      "seed_memories": [
+        "上周这个项目因为定价策略冲突失败。",
+        "类似项目曾因目标和价格策略没有澄清而崩掉。"
+      ],
+      "query": "为一个上周因定价冲突失败的 AI 产品，规划接下来 7 天的推进方案。"
+    },
+    {
+      "name": "life_goal_conflict_case",
+      "mode": "life_os",
+      "seed_memories": [
+        "过去几周一直在家庭责任与个人目标之间摇摆。",
+        "每次拖延最重要目标时，焦虑会明显上升。"
+      ],
+      "query": "我总在个人目标和家庭责任之间冲突，不知道下一步怎么做。"
+    }
+  ]
+}
