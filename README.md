@@ -1,5 +1,10 @@
 # TelosCore Agent Twin
 
+![Track](https://img.shields.io/badge/Track-Agent%20%2B%20Memory-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Runtime](https://img.shields.io/badge/Runtime-Python%203.13-blueviolet)
+![Mode](https://img.shields.io/badge/Mode-Local--first-orange)
+
 **Memory Genesis Competition 2026 | Track 1: Agent + Memory**
 
 A memory-aware long-horizon agent with built-in Personal Digital Twin mode, powered by EverMemOS.
