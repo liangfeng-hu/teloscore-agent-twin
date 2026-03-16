@@ -18,7 +18,7 @@ U_t = (U_{\mathrm{unc}}, U_{\mathrm{con}}, U_{\mathrm{ent}}, U_{\mathrm{tel}})
 
 to let retrieved memory actively change the next decision.
 
-The same core supports **two modes**:
+The same core supports two modes:
 
 - **Agent OS** — a long-horizon autonomous agent for multi-step task execution
 - **Life OS** — a Personal Digital Twin mode for goals, habits, conflicts, and self-reflection
@@ -27,17 +27,16 @@ This is **one core with two outward behaviors**, not two separate products.
 
 ## 2. Why it matters
 
-Most AI systems can retrieve context, but they do not let memory *govern* action selection.
+Most AI systems can retrieve context, but they do not let memory govern action selection.
 
 TelosCore Agent Twin is designed to demonstrate a stronger loop:
 
-1. store meaningful events into long-term memory
-2. retrieve memory relevant to the current state
-3. convert retrieved memory into energy bias
-4. shift the next action accordingly
+- store meaningful events into long-term memory
+- retrieve memory relevant to the current state
+- convert retrieved memory into energy bias
+- shift the next action accordingly
 
-In other words, memory is not an archive here.
-It is part of the decision policy.
+In other words, memory is not an archive here. It is part of the decision policy.
 
 ## 3. How EverMemOS powers this project
 
@@ -56,7 +55,7 @@ The resulting behavior is **memory-aware**, not purely reactive.
 
 At the center of this repo is a simple claim:
 
-> **historical memory changes current action selection**
+**historical memory changes current action selection**
 
 The energy controller loads memory bias into the current state, then selects the next action using a policy over the updated energy vector.
 
@@ -74,10 +73,10 @@ After memory retrieval shifts the energy state and the controller selects an act
 
 This creates a more complete loop:
 
-1. retrieve relevant memory  
-2. convert memory into energy bias  
-3. select the next action  
-4. generate content consistent with that action  
+- retrieve relevant memory
+- convert memory into energy bias
+- select the next action
+- generate content consistent with that action
 
 This makes the system easier to demonstrate as an actual agent rather than only a decision classifier.
 
@@ -127,14 +126,14 @@ APP_PORT=8000
 DEFAULT_MODE=agent_os
 
 Step 4: start the API
-uvicorn api.app:app --reload --port 8000
+python -m uvicorn api.app:app --reload --port 8000
 
 7. Run the demos
 Agent OS demo
-python demo/run_agent_demo.py
+python -m demo.run_agent_demo
 
 Life OS demo
-python demo/run_lifeos_demo.py
+python -m demo.run_lifeos_demo
 
 8. API usage
 POST /run
@@ -149,19 +148,16 @@ or
   "mode": "life_os",
   "input": "I keep delaying an important personal goal and feel conflict about it."
 }
-
 9. Evaluation focus
 
 See:
-python eval/memory_action_shift.py
+python -m eval.memory_action_shift
 
 This script compares baseline behavior vs memory-biased behavior.
 
-## 9.1 Energy trace visualization
+9.1 Energy trace visualization
 
 The repository also includes a simple visualization script:
-
-```bash
 python -m eval.plot_energy_trace
 
 This generates energy evolution plots for both modes:
@@ -181,7 +177,6 @@ U_ent
 U_tel
 
 change over time across multiple steps.
-
 
 10. What this repo is not
 
@@ -213,4 +208,3 @@ MIT License
 
 Author: Liangfeng Hu
 Project direction: memory-aware cognition, long-horizon agents, personal digital twin systems
-
