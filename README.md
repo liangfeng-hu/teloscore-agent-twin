@@ -66,6 +66,29 @@ Typical behavior examples:
 - high uncertainty retrieved → \(U_{\mathrm{unc}}\) rises → next action shifts toward **Clarify**
 - goal-aligned memory retrieved → \(U_{\mathrm{tel}}\) drops → next action continues toward execution
 
+## 4.1 Action-aligned content generation
+
+TelosCore Agent Twin does not stop at selecting an action.
+
+After memory retrieval shifts the energy state and the controller selects an action such as `patch`, `clarify`, `reflect`, or `replan`, the system can also generate **action-aligned output content**.
+
+This creates a more complete loop:
+
+1. retrieve relevant memory  
+2. convert memory into energy bias  
+3. select the next action  
+4. generate content consistent with that action  
+
+This makes the system easier to demonstrate as an actual agent rather than only a decision classifier.
+
+Example response fields now include:
+
+- `action`
+- `reason`
+- `generated_output`
+- `llm_used`
+- `llm_backend`
+
 ## 5. Repo structure
 
 ```text
@@ -134,6 +157,32 @@ python eval/memory_action_shift.py
 
 This script compares baseline behavior vs memory-biased behavior.
 
+## 9.1 Energy trace visualization
+
+The repository also includes a simple visualization script:
+
+```bash
+python -m eval.plot_energy_trace
+
+This generates energy evolution plots for both modes:
+
+assets/energy_trace_agent.png
+
+assets/energy_trace_life.png
+
+These plots make the cognitive dynamics more interpretable by showing how:
+
+U_unc
+
+U_con
+
+U_ent
+
+U_tel
+
+change over time across multiple steps.
+
+
 10. What this repo is not
 
 This repository is intentionally focused on Track 1.
@@ -164,3 +213,4 @@ MIT License
 
 Author: Liangfeng Hu
 Project direction: memory-aware cognition, long-horizon agents, personal digital twin systems
+
