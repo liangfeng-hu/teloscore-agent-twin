@@ -237,7 +237,7 @@ It does **not** include:
 
 Add your 3–5 minute video link here:
 
-**Demo Video:** `<YOUR_VIDEO_URL>`
+**Demo Video:** https://github.com/liangfeng-hu/teloscore-agent-twin/blob/main/demo-video.mp4
 
 ## 12. Origin and continuity
 
